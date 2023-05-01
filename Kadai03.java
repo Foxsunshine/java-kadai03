@@ -11,6 +11,7 @@ class Kaidai03 {
 
         // creat a list to save all the data
         var arr = new ArrayList<String[]>();
+        String separator = System.getProperty("line.separator");
 
         Path path = Paths.get(".", "scores.csv");
 
@@ -19,6 +20,12 @@ class Kaidai03 {
             int count = 0;
             while ((line = br.readLine()) != null) {
                 String[] datas = line.split(",");
+
+                // clear the space
+                for (int i = 0; i < datas.length; i++) {
+                    datas[i] = datas[i].trim();
+                }
+
                 arr.add(count, datas);
             }
 
@@ -27,15 +34,17 @@ class Kaidai03 {
             String[] datas = arr.remove(arr.size() - 1);
 
             // increase the list
-            arr.sort((x, y) -> Integer.parseInt(x[2].trim()) -
-                    Integer.parseInt(y[2].trim()));
+            arr.sort((x, y) -> Integer.parseInt(x[2]) -
+                    Integer.parseInt(y[2]));
 
-            System.out.println(datas[2] + " " + datas[0] + datas[1] + datas[3]);
+            System.out.printf("%-10s %-10s %-10s %-10s%s", datas[2], datas[0], datas[1], datas[3], separator);
+
             // iriterate from the last
             for (int i = arr.size() - 1; i > -1; i--) {
-                System.out.println(arr.get(i)[2] + " " + arr.get(i)[0] + arr.get(i)[1] + arr.get(i)[3]);
+                System.out.printf("%-10s %-10s %-10s %-10s%s",
+                        arr.get(i)[2], arr.get(i)[0], arr.get(i)[1], arr.get(i)[3], separator);
             }
-            // System.out.println(arr);
+            System.out.println(arr);
 
         } catch (IOException e) {
             e.printStackTrace();
