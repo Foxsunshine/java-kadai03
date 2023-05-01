@@ -44,7 +44,6 @@ class Kaidai03 {
                 System.out.printf("%-10s %-10s %-10s %-10s%s",
                         arr.get(i)[2], arr.get(i)[0], arr.get(i)[1], arr.get(i)[3], separator);
             }
-            System.out.println(arr);
 
         } catch (IOException e) {
             e.printStackTrace();
